@@ -1,0 +1,70 @@
+/* frontend/src/App.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar for better UI */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2D3748; /* Darker gray for track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4A5568; /* Medium gray for thumb */
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748B; /* Lighter gray on hover */
+}
+
+body {
+    @apply bg-dark text-text font-sans;
+}
+
+/* Basic styling for common elements */
+.btn-primary {
+    @apply bg-primary text-white px-4 py-2 rounded-md hover:bg-secondary transition-colors duration-200;
+}
+
+.btn-danger {
+    @apply bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700 transition-colors duration-200;
+}
+
+.input-field {
+    @apply w-full p-2 border border-gray-600 rounded-md bg-darker text-text focus:outline-none focus:ring-2 focus:ring-primary;
+}
+
+.card {
+    @apply bg-darker p-6 rounded-lg shadow-lg;
+}
+
+.chart-container {
+    @apply bg-darker p-4 rounded-lg shadow-lg h-80 flex items-center justify-center; /* Added flex for centering charts */
+}
+
+/* Specific styling for tables */
+.table-header {
+    @apply bg-gray-700 text-white uppercase text-sm leading-normal;
+}
+
+.table-row {
+    @apply border-b border-gray-600 hover:bg-gray-700;
+}
+
+.table-cell {
+    @apply py-3 px-6 text-left;
+}
+
+/* Form Styling */
+.form-group {
+    @apply mb-4;
+}
+
+.form-label {
+    @apply block text-sm font-medium text-gray-300 mb-1;
+}
