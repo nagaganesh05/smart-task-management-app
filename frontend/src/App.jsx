@@ -1,7 +1,8 @@
 
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './Pages/Login';
-import Signup from './Pages/Signup';
+// import Signup from './Pages/Signup';
+import Signup from './Pages/SignUp';
 import Dashboard from './Pages/Dashboard';
 import AdminDashboard from './Pages/AdminDashboard';
 import NotFound from './Pages/NotFound';
