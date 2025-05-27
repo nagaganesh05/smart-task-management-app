@@ -1,4 +1,4 @@
-// frontend/src/services/taskService.js
+
 const API_URL = '/api/tasks';
 
 const getAuthHeaders = () => {

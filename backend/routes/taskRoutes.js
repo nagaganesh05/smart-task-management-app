@@ -1,4 +1,4 @@
-// backend/routes/taskRoutes.js
+
 const express = require('express');
 const {
     getTasks,
@@ -20,6 +20,6 @@ router.route('/:id')
     .put(protect, updateTask)
     .delete(protect, deleteTask);
 
-router.get('/dashboard-data', protect, getDashboardData); // Specific route for dashboard metrics
+router.get('/dashboard-data', protect, getDashboardData); 
 
 module.exports = router;

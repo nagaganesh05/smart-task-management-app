@@ -1,4 +1,4 @@
-// backend/models/AuditLog.js
+
 module.exports = (sequelize, DataTypes) => {
     const AuditLog = sequelize.define('AuditLog', {
         id: {
@@ -9,30 +9,30 @@ module.exports = (sequelize, DataTypes) => {
         },
         userId: {
             type: DataTypes.INTEGER,
-            allowNull: true, // Can be null if action is system-wide or before login
+            allowNull: true, 
             references: {
-                model: 'users', // Refers to the actual table name
+                model: 'users',
                 key: 'id'
             }
         },
         action: {
-            type: DataTypes.STRING, // e.g., 'USER_CREATED', 'TASK_UPDATED', 'ACCOUNT_DEACTIVATED'
+            type: DataTypes.STRING, 
             allowNull: false
         },
         entityType: {
-            type: DataTypes.STRING, // e.g., 'User', 'Task'
+            type: DataTypes.STRING, 
             allowNull: false
         },
         entityId: {
-            type: DataTypes.INTEGER, // ID of the affected entity
+            type: DataTypes.INTEGER, 
             allowNull: true
         },
         oldValue: {
-            type: DataTypes.JSON, // Store old state of the record (JSON string)
+            type: DataTypes.JSON, 
             allowNull: true
         },
         newValue: {
-            type: DataTypes.JSON, // Store new state of the record (JSON string)
+            type: DataTypes.JSON, 
             allowNull: true
         },
         ipAddress: {
@@ -44,16 +44,16 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         }
     }, {
-        timestamps: true, // `createdAt` will serve as the timestamp for the log
-        updatedAt: false, // Audit logs generally don't get updated
-        tableName: 'audit_logs' // Explicitly define table name
+        timestamps: true,
+        updatedAt: false, 
+        tableName: 'audit_logs' 
     });
 
-    // Define associations for the AuditLog model
+
     AuditLog.associate = (models) => {
         AuditLog.belongsTo(models.User, {
             foreignKey: 'userId',
-            as: 'user' // Alias for the user who performed the audit action
+            as: 'user' 
         });
     };
 

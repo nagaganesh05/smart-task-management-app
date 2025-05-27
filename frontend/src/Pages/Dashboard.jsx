@@ -1,9 +1,9 @@
-// frontend/src/pages/Dashboard.jsx
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { getDashboardData, getTasks, createTask, updateTask, deleteTask } from '../Services/taskService';
 import TaskList from '../Components/dashboard/TaskList';
-import TaskChart from '../Components/dashboard/TaskChart';
+import TaskChart from '../Components/dashboard/Taskchart';
 import TaskFormModal from '../Components/tasks/TaskFormModal';
 import ConfirmationModal from '../Components/Common/ConfirmationModal';
 import LoadingSpinner from '../Components/Common/LoadingSpinner';
@@ -18,15 +18,15 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Task Modal state
-  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
-  const [currentTask, setCurrentTask] = useState(null); // For editing
 
-  // Confirmation Modal state
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const [currentTask, setCurrentTask] = useState(null); 
+
+  
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
 
-  // Sorting state for TaskList
+
   const [sortBy, setSortBy] = useState('dueDate');
   const [sortOrder, setSortOrder] = useState('ASC');
 
@@ -67,8 +67,8 @@ function Dashboard() {
       }
       setIsTaskModalOpen(false);
       setCurrentTask(null);
-      fetchTasks(); // Refresh tasks
-      fetchDashboardData(); // Refresh dashboard data
+      fetchTasks(); 
+      fetchDashboardData();
     } catch (err) {
       setError(err.message || 'Failed to save task.');
     }
@@ -102,8 +102,8 @@ function Dashboard() {
     setError('');
     try {
       await updateTask(taskId, { status: newStatus });
-      fetchTasks(); // Refresh tasks
-      fetchDashboardData(); // Refresh dashboard data
+      fetchTasks(); 
+      fetchDashboardData(); 
     } catch (err) {
       setError(err.message || 'Failed to update task status.');
     }
@@ -269,8 +269,8 @@ function Dashboard() {
         isOpen={isTaskModalOpen}
         onClose={() => {
           setIsTaskModalOpen(false);
-          setCurrentTask(null); // Clear current task when closing
-          setError(''); // Clear error on close
+          setCurrentTask(null);
+          setError('');
         }}
         onSubmit={handleTaskSubmit}
         initialData={currentTask}

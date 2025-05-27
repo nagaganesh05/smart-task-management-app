@@ -1,4 +1,4 @@
-// frontend/src/pages/AdminDashboard.jsx
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { getAllUsers, deactivateUserAccount, activateUserAccount, createUserAccount } from '../services/adminService';
@@ -14,16 +14,16 @@ function AdminDashboard() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
-    // User management modal states
+
     const [isCreateUserModalOpen, setIsCreateUserModalOpen] = useState(false);
     const [newUserData, setNewUserData] = useState({
         username: '', email: '', password: '', role: 'user', isActive: true
     });
 
-    // Confirmation Modal states
+
     const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
-    const [actionUser, setActionUser] = useState(null); // User for whom action is pending
-    const [confirmActionType, setConfirmActionType] = useState(''); // 'activate' or 'deactivate'
+    const [actionUser, setActionUser] = useState(null); 
+    const [confirmActionType, setConfirmActionType] = useState(''); 
 
     const fetchUsers = useCallback(async () => {
         setError('');
@@ -56,10 +56,10 @@ function AdminDashboard() {
         setLoading(true);
         try {
             await createUserAccount(newUserData);
-            alert('User account created successfully!'); // Replace with custom toast/modal
+            alert('User account created successfully!'); 
             setIsCreateUserModalOpen(false);
             setNewUserData({ username: '', email: '', password: '', role: 'user', isActive: true });
-            fetchUsers(); // Refresh the user list
+            fetchUsers(); 
         } catch (err) {
             setError(err.message || 'Failed to create user.');
         } finally {
@@ -85,7 +85,7 @@ function AdminDashboard() {
             } else if (confirmActionType === 'activate') {
                 await activateUserAccount(actionUser.id);
             }
-            fetchUsers(); // Refresh users after action
+            fetchUsers();
             setIsConfirmModalOpen(false);
             setActionUser(null);
             setConfirmActionType('');
@@ -121,7 +121,7 @@ function AdminDashboard() {
                         <button
                             onClick={() => handleActionClick(row.id, 'deactivate')}
                             className="btn-danger flex items-center text-xs"
-                            disabled={row.id === user.id} // Disable deactivating self
+                            disabled={row.id === user.id} 
                             title={row.id === user.id ? "Cannot deactivate your own account" : "Deactivate Account"}
                         >
                             <UserX size={14} className="mr-1" /> Deactivate
@@ -223,7 +223,7 @@ function AdminDashboard() {
                 <DataTable data={users} columns={userTableColumns} />
             </section>
 
-            {/* Create User Modal */}
+            
             <div className={`fixed inset-0 bg-darker bg-opacity-75 flex items-center justify-center z-50 ${!isCreateUserModalOpen && 'hidden'}`}>
                 <div className="bg-dark p-6 rounded-lg shadow-xl w-full max-w-md">
                     <h3 className="text-xl font-semibold text-text mb-4">Create New User Account</h3>

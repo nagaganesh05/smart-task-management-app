@@ -1,4 +1,4 @@
-// backend/middleware/authMiddleware.js
+
 const jwt = require('jsonwebtoken');
 const models = require('../models');
 const User = models.User;
@@ -23,7 +23,6 @@ const protect = async (req, res, next) => {
                 });
             }
 
-            // Check if user is active
             if (!req.user.isActive) {
                 return res.status(403).json({
                     message: 'Account is deactivated. Please contact an administrator.'

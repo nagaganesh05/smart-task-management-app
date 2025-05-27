@@ -1,4 +1,4 @@
-// frontend/src/components/dashboard/TaskChart.jsx
+
 import React from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer,
@@ -19,7 +19,7 @@ const TaskChart = ({ type, data, title }) => {
   }
 
   const renderBarChart = () => {
-    // Aggregate completed tasks by date for the last 7 days
+    
     const dailyCounts = {};
     for (let i = 0; i < 7; i++) {
       const date = format(subDays(new Date(), 6 - i), 'yyyy-MM-dd');
@@ -57,7 +57,7 @@ const TaskChart = ({ type, data, title }) => {
   };
 
   const renderPieChart = () => {
-    // Data is already aggregated as { category: 'CategoryName', count: N }
+    
     const chartData = data.map(item => ({
       name: item.category,
       value: item.count,

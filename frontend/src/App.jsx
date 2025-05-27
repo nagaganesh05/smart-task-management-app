@@ -1,14 +1,13 @@
-// frontend/src/App.jsx
+
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Dashboard from './pages/Dashboard';
-import AdminDashboard from './pages/AdminDashboard';
-import NotFound from './pages/NotFound';
+import Login from './Pages/Login';
+import Signup from './Pages/Signup';
+import Dashboard from './Pages/Dashboard';
+import AdminDashboard from './Pages/AdminDashboard';
+import NotFound from './Pages/NotFound';
 import { useAuth } from './hooks/useAuth';
 import LoadingSpinner from './Components/Common/LoadingSpinner';
 
-// ProtectedRoute component for regular users
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, loading } = useAuth();
 
@@ -21,7 +20,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   }
 
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    return <Navigate to="/dashboard" replace />; // Redirect non-admins from admin routes
+    return <Navigate to="/dashboard" replace />; 
   }
 
   return children;

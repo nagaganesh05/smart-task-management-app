@@ -1,4 +1,4 @@
-// backend/models/Task.js
+
 module.exports = (sequelize, DataTypes) => {
     const Task = sequelize.define('Task', {
         id: {
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'users', // Refers to the actual table name
+                model: 'users', 
                 key: 'id'
             }
         },
@@ -42,14 +42,14 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         timestamps: true,
-        tableName: 'tasks' // Explicitly define table name
+        tableName: 'tasks' 
     });
 
-    // Define associations for the Task model
+   
     Task.associate = (models) => {
         Task.belongsTo(models.User, {
             foreignKey: 'userId',
-            as: 'user' // Alias for the user who owns this task
+            as: 'user' 
         });
     };
 

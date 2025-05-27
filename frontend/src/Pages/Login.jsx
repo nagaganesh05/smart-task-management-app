@@ -1,4 +1,4 @@
-// frontend/src/pages/Login.jsx
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
@@ -19,8 +19,8 @@ function Login() {
 
     try {
       const data = await login({ username, password });
-      authLogin(data); // Update AuthContext state
-      navigate('/dashboard'); // Redirect to dashboard on successful login
+      authLogin(data); 
+      navigate('/dashboard'); 
     } catch (err) {
       setError(err.message || 'Login failed. Please check your credentials.');
     } finally {

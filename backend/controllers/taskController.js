@@ -1,4 +1,4 @@
-// backend/controllers/taskController.js
+
 const models = require('../models');
 const Task = models.Task;
 const AuditLog = models.AuditLog;
@@ -21,10 +21,8 @@ const getTasks = async (req, res, next) => {
     if (status) whereClause.status = status;
     if (category) whereClause.category = category;
     if (dueDate) {
-        // To get tasks due today or in the future: dueDate: { [Op.gte]: new Date(dueDate) }
-        // To get tasks due on or before a specific date:
         whereClause.dueDate = {
-            [Op.lte]: new Date(dueDate) // Tasks due on or before this date
+            [Op.lte]: new Date(dueDate) 
         };
     }
 
@@ -171,14 +169,13 @@ const deleteTask = async (req, res, next) => {
 const getDashboardData = async (req, res, next) => {
     const userId = req.user.id;
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Start of today
+    today.setHours(0, 0, 0, 0); 
 
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(today.getDate() - 7);
-    sevenDaysAgo.setHours(0, 0, 0, 0); // Start of 7 days ago
+    sevenDaysAgo.setHours(0, 0, 0, 0); 
 
     try {
-        // Tasks due today
         const tasksDueToday = await Task.findAll({
             where: {
                 userId,
@@ -186,7 +183,7 @@ const getDashboardData = async (req, res, next) => {
                     [Op.lte]: new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999) // End of today
                 },
                 status: {
-                    [Op.ne]: 'completed' // Not completed
+                    [Op.ne]: 'completed' 
                 }
             },
             order: [
@@ -194,19 +191,18 @@ const getDashboardData = async (req, res, next) => {
             ]
         });
 
-        // Tasks completed in last 7 days
+
         const tasksCompletedLast7Days = await Task.findAll({
             where: {
                 userId,
                 status: 'completed',
-                updatedAt: { // Using updatedAt as the completion timestamp
+                updatedAt: { 
                     [Op.gte]: sevenDaysAgo,
                     [Op.lte]: new Date()
                 }
             }
         });
 
-        // Upcoming tasks (due date in future, not completed)
         const upcomingTasks = await Task.findAll({
             where: {
                 userId,
@@ -220,10 +216,10 @@ const getDashboardData = async (req, res, next) => {
             order: [
                 ['dueDate', 'ASC']
             ],
-            limit: 5 // Limit to a few upcoming tasks
+            limit: 5 
         });
 
-        // Most Popular Task Categories
+
         const popularCategories = await Task.findAll({
             where: {
                 userId,

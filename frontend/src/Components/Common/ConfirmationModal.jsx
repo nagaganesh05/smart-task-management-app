@@ -1,4 +1,4 @@
-// frontend/src/components/common/ConfirmationModal.jsx
+
 import React from 'react';
 
 const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, message, confirmText = 'Confirm', cancelText = 'Cancel' }) => {

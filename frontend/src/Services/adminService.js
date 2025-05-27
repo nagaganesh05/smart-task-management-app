@@ -1,4 +1,4 @@
-// frontend/src/services/adminService.js
+
 const API_URL = '/api/admin';
 
 const getAuthHeaders = () => {

@@ -1,4 +1,4 @@
-// frontend/src/components/common/DataTable.jsx
+
 import React from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 

@@ -1,6 +1,5 @@
-// frontend/src/services/authService.js
-const API_URL = '/api/auth'; // Proxy handles '/api' prefix
 
+const API_URL = '/api/auth'; 
 const register = async (userData) => {
   const response = await fetch(`${API_URL}/register`, {
     method: 'POST',
@@ -33,7 +32,5 @@ const login = async (credentials) => {
   return response.json();
 };
 
-// You can add Google login service here later
-// const googleLogin = async (token) => { ... }
 
 export { register, login };

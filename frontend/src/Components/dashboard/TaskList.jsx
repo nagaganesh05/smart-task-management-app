@@ -1,8 +1,8 @@
-// frontend/src/components/dashboard/TaskList.jsx
+
 import React from 'react';
 import { Edit, Trash2 } from 'lucide-react';
 import { format } from 'date-fns';
-import DataTable from '../Common/DataTable'; // Using the reusable DataTable
+import DataTable from '../Common/DataTable';
 
 const TaskList = ({ tasks, onEdit, onDelete, onUpdateStatus, onSort, sortBy, sortOrder }) => {
 

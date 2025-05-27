@@ -1,4 +1,4 @@
-// backend/controllers/adminController.js
+
 const models = require('../models');
 const User = models.User;
 const AuditLog = models.AuditLog;
@@ -47,9 +47,9 @@ const createUserAccount = async (req, res, next) => {
             isActive: isActive !== undefined ? isActive : true
         });
 
-        // Log audit
+
         await AuditLog.create({
-            userId: req.user.id, // Admin performing the action
+            userId: req.user.id, 
             action: 'ADMIN_USER_CREATED',
             entityType: 'User',
             entityId: newUser.id,
@@ -64,7 +64,7 @@ const createUserAccount = async (req, res, next) => {
                 email: newUser.email,
                 role: newUser.role,
                 isActive: newUser.isActive,
-                token: generateToken(newUser.id, newUser.role) // Optionally generate token for the new user
+                token: generateToken(newUser.id, newUser.role) 
             }
         });
 
@@ -76,7 +76,7 @@ const createUserAccount = async (req, res, next) => {
 const deactivateUserAccount = async (req, res, next) => {
     const userIdToDeactivate = req.params.id;
 
-    // Prevent an admin from deactivating themselves
+
     if (req.user.id == userIdToDeactivate) {
         return res.status(403).json({ message: 'You cannot deactivate your own account.' });
     }
@@ -92,9 +92,9 @@ const deactivateUserAccount = async (req, res, next) => {
         user.isActive = false;
         await user.save();
 
-        // Log audit
+
         await AuditLog.create({
-            userId: req.user.id, // Admin performing the action
+            userId: req.user.id,
             action: 'ADMIN_USER_DEACTIVATED',
             entityType: 'User',
             entityId: user.id,
@@ -122,9 +122,8 @@ const activateUserAccount = async (req, res, next) => {
         user.isActive = true;
         await user.save();
 
-        // Log audit
         await AuditLog.create({
-            userId: req.user.id, // Admin performing the action
+            userId: req.user.id, 
             action: 'ADMIN_USER_ACTIVATED',
             entityType: 'User',
             entityId: user.id,

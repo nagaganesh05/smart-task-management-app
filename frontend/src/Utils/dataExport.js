@@ -1,17 +1,16 @@
-// frontend/src/utils/dataExport.js
+
 import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable'; // <--- THIS IS THE CORRECT IMPORT
+import 'jspdf-autotable'; 
 
-// Generic function to flatten data for export (if needed)
+
 const flattenData = (data) => {
     if (!data || data.length === 0) return [];
     return data.map(item => {
         const flattened = {};
         for (const key in item) {
             if (typeof item[key] === 'object' && item[key] !== null) {
-                // Handle nested objects if necessary, e.g., user.username
                 for (const nestedKey in item[key]) {
                     flattened[`${key}_${nestedKey}`] = item[key][nestedKey];
                 }
@@ -59,24 +58,22 @@ const downloadPDF = (data, columns, filename = 'data') => {
     const tableColumn = columns.map(col => col.header);
     const tableRows = data.map(item => columns.map(col => item[col.dataKey]));
 
-    doc.autoTable({ // <-- THIS IS NOW CORRECT
+    doc.autoTable({ 
         head: [tableColumn],
         body: tableRows,
         startY: 20,
-        headStyles: { fillColor: [59, 130, 246] }, // Tailwind primary color
+        headStyles: { fillColor: [59, 130, 246] }, 
         alternateRowStyles: { fillColor: [243, 244, 246] },
         styles: {
             fontSize: 8,
             cellPadding: 2,
-            textColor: [31, 41, 55] // Dark text
+            textColor: [31, 41, 55] 
         },
         didDrawPage: function(data) {
-            // Header
             doc.setFontSize(10);
             doc.setTextColor(40);
             doc.text(`Report: ${filename}`, data.settings.margin.left, 10);
 
-            // Footer
             var str = "Page " + doc.internal.getNumberOfPages()
             doc.setFontSize(8);
             doc.text(str, data.settings.margin.left, doc.internal.pageSize.height - 10);

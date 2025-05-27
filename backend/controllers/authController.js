@@ -1,9 +1,9 @@
-// backend/controllers/authController.js
+
 const bcrypt = require('bcryptjs');
 const models = require('../models');
 const User = models.User;
 const AuditLog = models.AuditLog;
-const { generateToken } = require('../utils/tokenUtils'); // Import from tokenUtils
+const { generateToken } = require('../utils/tokenUtils'); 
 
 const registerUser = async (req, res, next) => {
     const {
@@ -12,7 +12,6 @@ const registerUser = async (req, res, next) => {
         password
     } = req.body;
 
-    // Simple validation
     if (!username || !email || !password) {
         return res.status(400).json({
             message: 'Please enter all fields'

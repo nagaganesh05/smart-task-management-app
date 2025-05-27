@@ -1,4 +1,4 @@
-// backend/models/User.js
+
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
         id: {
@@ -42,19 +42,19 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: true
         }
     }, {
-        timestamps: true, // `createdAt` and `updatedAt`
-        tableName: 'users' // Explicitly define table name
+        timestamps: true, 
+        tableName: 'users' 
     });
 
-    // Define associations for the User model
+
     User.associate = (models) => {
         User.hasMany(models.Task, {
             foreignKey: 'userId',
-            as: 'tasks' // Alias for tasks associated with a user
+            as: 'tasks' 
         });
         User.hasMany(models.AuditLog, {
             foreignKey: 'userId',
-            as: 'auditLogs' // Alias for audit logs associated with a user
+            as: 'auditLogs' 
         });
     };
 

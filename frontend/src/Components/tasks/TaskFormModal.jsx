@@ -1,4 +1,4 @@
-// frontend/src/components/tasks/TaskFormModal.jsx
+
 import React, { useState, useEffect } from 'react';
 import { validateTaskName, validateDueDate } from '../../Utils/validation';
 import { format } from 'date-fns';
@@ -20,14 +20,13 @@ const TaskFormModal = ({ isOpen, onClose, onSubmit, initialData = null, error: s
         setDueDate(initialData.dueDate ? format(new Date(initialData.dueDate), 'yyyy-MM-dd') : '');
         setStatus(initialData.status || 'pending');
       } else {
-        // Reset form for new task
         setName('');
         setDescription('');
         setCategory('');
         setDueDate('');
         setStatus('pending');
       }
-      setFormError(''); // Clear previous form errors
+      setFormError('');
     }
   }, [isOpen, initialData]);
 
@@ -96,7 +95,7 @@ const TaskFormModal = ({ isOpen, onClose, onSubmit, initialData = null, error: s
               className="input-field"
             />
           </div>
-          {initialData && ( // Only show status for existing tasks
+          {initialData && ( 
             <div className="form-group">
               <label htmlFor="status" className="form-label">Status:</label>
               <select

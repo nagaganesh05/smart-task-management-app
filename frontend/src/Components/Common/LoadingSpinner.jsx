@@ -1,4 +1,4 @@
-// frontend/src/components/common/LoadingSpinner.jsx
+
 import React from 'react';
 
 const LoadingSpinner = () => {
