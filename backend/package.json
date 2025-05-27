@@ -10,7 +10,7 @@
     "data:import": "node seeder",
     "data:destroy": "node seeder -d",
     "server": "nodemon server.js",
-    "build": "npm install --prefix ../frontend && npm run build --prefix ../frontend"
+    "build": "cd ../frontend && npm install && npm run build" 
   },
   "keywords": [],
   "author": "",
